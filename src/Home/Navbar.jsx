@@ -7,7 +7,7 @@ const Navbar = () => {
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [quantity, setQuantity] = useState(1);
     const [mobileMenu, setMobileMenu] = useState(false);
-
+  
     const products = [
         { id: 1, name: "The Dandy chair", price: "£250", image: "https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=400&h=400&fit=crop", bgColor: "bg-slate-400", description: "A timeless design, with premium materials features as one of our most popular and iconic pieces. The dandy chair is perfect for any stylish living space with beech legs and lambskin leather upholstery.", features: ["Premium material", "Handmade upholstery", "Quality timeless classic"], dimensions: { height: "110cm", width: "75cm", depth: "50cm" } },
         { id: 2, name: "Modern Sofa", price: "£155", image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=400&fit=crop", bgColor: "bg-stone-300", description: "A contemporary sofa with clean lines and premium fabric upholstery. Perfect for modern living spaces.", features: ["Premium fabric", "Comfortable seating", "Modern design"], dimensions: { height: "85cm", width: "200cm", depth: "90cm" } },
