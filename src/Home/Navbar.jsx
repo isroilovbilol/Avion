@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
-import { Search, User, ShoppingCart, Check, Truck, CreditCard, Leaf, X, Minus, Plus } from 'lucide-react'
+import React, { useState } from 'react';
+import { Search, User, ShoppingCart, Check, Truck, CreditCard, Leaf, X, Minus, Plus } from 'lucide-react';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const Navbar = () => {
     const [showMore1, setShowMore1] = useState(false);
@@ -26,7 +28,6 @@ const Navbar = () => {
         { id: 12, name: "Ottoman", price: "£75", image: "https://images.unsplash.com/photo-1549497538-303791108f95?w=400&h=400&fit=crop", bgColor: "bg-teal-50", description: "A comfortable ottoman with premium upholstery.", features: ["Premium upholstery", "Multi-functional", "Comfortable design"], dimensions: { height: "40cm", width: "60cm", depth: "40cm" } }
     ];
 
-    const navItems = ["Home", "Products", "About", "Contact", "Blog", "Cart"];
     const features = [
         { icon: Truck, title: "Next day as standard", desc: "Order before 3pm and get your order the next day as standard" },
         { icon: Check, title: "Made by true artisans", desc: "Handmade crafted goods made with real passion and craftmanship" },
@@ -38,7 +39,7 @@ const Navbar = () => {
         <div className="group cursor-pointer transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl" onClick={() => onClick(product)}>
             <div className={`${product.bgColor} aspect-square rounded-lg overflow-hidden mb-4 relative flex items-center justify-center`}>
                 <img src={product.image} alt={product.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
+                <div className="absolute inset-0  bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
             </div>
             <div className="space-y-2">
                 <h3 className="text-base sm:text-lg font-normal text-gray-900 group-hover:text-gray-600 transition-colors duration-200">{product.name}</h3>
@@ -49,40 +50,7 @@ const Navbar = () => {
 
     return (
         <div className='w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-            {mobileMenu && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 z-50 md:hidden">
-                    <div className="bg-white w-64 h-full p-6">
-                        <div className="flex justify-between items-center mb-8">
-                            <h2 className="text-xl font-mono">Menu</h2>
-                            <button onClick={() => setMobileMenu(false)}><X size={24} /></button>
-                        </div>
-                        <ul className="space-y-4">
-                            {navItems.map((item, i) => <li key={i}><a href="#" className="text-gray-700 hover:text-gray-900">{item}</a></li>)}
-                        </ul>
-                    </div>
-                </div>
-            )}
-
-            <div className='flex justify-between items-center py-4'>
-                <Search className="cursor-pointer" size={20} />
-                <button className='font-mono text-xl sm:text-2xl'>Avion</button>
-                <div className='flex gap-4 items-center'>
-                    <ShoppingCart size={20} className="cursor-pointer" />
-                    <User size={20} className="cursor-pointer" />
-                    <button className="md:hidden" onClick={() => setMobileMenu(true)}>
-                        <div className="space-y-1">
-                            <div className="w-5 h-0.5 bg-gray-600"></div>
-                            <div className="w-5 h-0.5 bg-gray-600"></div>
-                            <div className="w-5 h-0.5 bg-gray-600"></div>
-                        </div>
-                    </button>
-                </div>
-            </div>
-            <div className='w-full h-[1px] bg-gray-200 my-4'></div>
-
-            <ul className='hidden md:flex justify-around items-center text-gray-500 text-sm lg:text-base font-sans mb-10'>
-                {navItems.map((item, i) => <li key={i}><a href="#" className="hover:text-gray-900">{item}</a></li>)}
-            </ul>
+            <Header mobileMenu={mobileMenu} setMobileMenu={setMobileMenu} />
 
             <div className='w-full flex flex-col md:flex-row mb-12 sm:mb-20'>
                 <div className='w-full md:w-3/4 bg-blue-950 p-6 sm:p-8 lg:p-16 text-white'>
@@ -223,53 +191,9 @@ const Navbar = () => {
                 </div>
             </section>
 
-            <footer className="bg-gray-900 text-white py-8 sm:py-12 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8 mb-8">
-                    <div>
-                        <h3 className="font-medium mb-3 sm:mb-4 text-sm sm:text-base">Menu</h3>
-                        <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-gray-300">
-                            {["New arrivals", "Best sellers", "Recently viewed", "Popular this week", "All products"].map((item, i) => (
-                                <li key={i}><a href="#" className="hover:text-white">{item}</a></li>
-                            ))}
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 className="font-medium mb-3 sm:mb-4 text-sm sm:text-base">Categories</h3>
-                        <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-gray-300">
-                            {["Crockery", "Furniture", "Homeware", "Plant pots", "Chairs"].map((item, i) => (
-                                <li key={i}><a href="#" className="hover:text-white">{item}</a></li>
-                            ))}
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 className="font-medium mb-3 sm:mb-4 text-sm sm:text-base">Our company</h3>
-                        <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-gray-300">
-                            {["About us", "Vacancies", "Contact us", "Privacy", "Returns policy"].map((item, i) => (
-                                <li key={i}><a href="#" className="hover:text-white">{item}</a></li>
-                            ))}
-                        </ul>
-                    </div>
-                    <div className="sm:col-span-2">
-                        <h3 className="font-medium mb-3 sm:mb-4 text-sm sm:text-base">Join our mailing list</h3>
-                        <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
-                            <input type="email" placeholder="your@email.com" className="flex-1 px-3 sm:px-4 py-2 bg-gray-800 border border-gray-700 sm:rounded-l-md sm:rounded-r-none rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 text-white text-sm" />
-                            <button className="bg-white text-gray-900 px-4 sm:px-6 py-2 sm:rounded-r-md sm:rounded-l-none rounded-md hover:bg-gray-100 transition-colors font-medium text-sm">Sign up</button>
-                        </div>
-                    </div>
-                </div>
-                <div className="border-t border-gray-800 pt-6 sm:pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-                    <p className="text-xs sm:text-sm text-gray-400">Copyright 2022 Avion LTD</p>
-                    <div className="flex space-x-4">
-                        {[1,2,3,4,5].map(i => (
-                            <a key={i} href="#" className="text-gray-400 hover:text-white">
-                                <div className="w-4 h-4 sm:w-5 sm:h-5 bg-gray-600 rounded"></div>
-                            </a>
-                        ))}
-                    </div>
-                </div>
-            </footer>
+            <Footer />
         </div>
-    )
+    );
 }
 
-export default Navbar
+export default Navbar;
